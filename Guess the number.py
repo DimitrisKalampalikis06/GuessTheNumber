@@ -13,8 +13,8 @@ root.geometry('600x560')
 root.title('The Number Game')
 
 logo = PhotoImage(file="upvote.png")
-logo2 = PhotoImage(file="9975_downvote.png")
-logo3 = PhotoImage(file="checkbox-303113__180.png")
+logo2 = PhotoImage(file="downvote.png")
+logo3 = PhotoImage(file="check.png")
 a = random.randint(0, 100)
 b = 0
 c = 0
