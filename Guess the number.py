@@ -21,6 +21,9 @@ c = 0
 d = 0
 h = 0
 t = 0
+r = 0
+g = 0
+l = 0
 p = random.randint(0, 100)
 progr = IntVar()
 s = Style()
@@ -30,7 +33,7 @@ def effect():
     global lbl5, p, h
     if h == 0:
         lbl5 = tk.Label(root, text='', fg='#B21D1D', bg='black', font=('Tahoma', 25))
-        lbl5.grid(row=5, column=0, columnspan=2)
+        lbl5.grid(row=6, column=0, columnspan=2)
 
     for i in range(15):
         lbl5.configure(text=p)
@@ -41,8 +44,12 @@ def effect():
 
 
 def restart():
-    global a, lbl33, b, c, progr, t
+    global a, lbl33, b, c, progr, t, r, l
     t = 0
+    r = 0
+    l = 0
+    lbl334.configure(text='Tries:' + str(r))
+    lbl334.update()
     if c == 0:
         lbl3.destroy()
         c = 1
@@ -61,7 +68,7 @@ def restart():
 
 
 def go(*args):
-    global a, b, progr, d, t
+    global a, b, progr, d, t, r, g, l
     if b == 0:
         entr.configure(state='normal')
         btn2.configure(state='normal')
@@ -73,11 +80,22 @@ def go(*args):
             if int(entr.get()) == a:
                 lbl3.configure(image=logo3)
                 entr.configure(state="disabled")
+                r += 1
+                lbl334.configure(text='Tries:' + str(r))
+                lbl334.update()
+                l = 1
+                g = r
+                lbl333.configure(text='Highscore:' + str(g))
+                lbl333.update()
             elif int(entr.get()) > a:
                 lbl3.configure(image=logo2)
             elif int(entr.get()) < a:
                 lbl3.configure(image=logo)
             d = int(entr.get())
+            if l == 0:
+                r += 1
+                lbl334.configure(text='Tries:' + str(r))
+                lbl334.update()
             progr.set(d)
         else:
             messagebox.showerror('ERROR', message='Only numbers between 0 and 100')
@@ -87,11 +105,23 @@ def go(*args):
             if int(entr.get()) == a:
                 lbl33.configure(image=logo3)
                 entr.configure(state="disabled")
+                r += 1
+                lbl334.configure(text='Tries:' + str(r))
+                lbl334.update()
+                l = 1
+                if r < g:
+                    g = r
+                    lbl333.configure(text='Highscore:' + str(g))
+                    lbl333.update()
             elif int(entr.get()) > a:
                 lbl33.configure(image=logo2)
             elif int(entr.get()) < a:
                 lbl33.configure(image=logo)
             d = int(entr.get())
+            if l == 0:
+                r += 1
+                lbl334.configure(text='Tries:' + str(r))
+                lbl334.update()
             progr.set(d)
         else:
             messagebox.showerror('ERROR', message='Only numbers between 0 and 100')
@@ -101,7 +131,7 @@ def go(*args):
 
 
 def menuu():
-    global lbl, logo, logo2, logo3, lbl2, lbl3, entr, btn, btn2, a, progr, bar, s
+    global lbl, logo, logo2, logo3, lbl2, lbl3, entr, btn, btn2, a, progr, bar, s, r, s, lbl334, lbl333
     lbl = tk.Label(root, text='Guess the number', fg='#41199C', bg='black', font=('Tahoma', 30), relief='sunken')
     lbl.grid(row=0, column=0, columnspan=2)
     f = font.Font(lbl, lbl.cget("font"))
@@ -111,7 +141,7 @@ def menuu():
                     text='The player has to guess a number.\n The number will be between 0 and 100\nPress enter to start and guess',
                     fg='white', bg='black', font=('Helvetica', 20))
     lbl2.grid(row=1, column=0, columnspan=2)
-    entr = tk.Entry(root, fg='black', bg='white', font=('Tahoma', 25), width=5,justify='center',state='disabled')
+    entr = tk.Entry(root, fg='black', bg='white', font=('Tahoma', 25), width=5, justify='center', state='disabled')
     entr.grid(row=2, column=0)
     lbl3 = tk.Label(root, text='Make a guess', fg='white', bg='black', font=('Tahoma', 25), pady=46)
     lbl3.grid(row=2, column=1)
@@ -124,6 +154,10 @@ def menuu():
     s.configure("TProgressbar", thickness=30)
     bar = ttk.Progressbar(root, length=600, style='grey.Horizontal.TProgressbar', variable=progr)
     bar.grid(row=4, column=0, columnspan=2)
+    lbl334 = tk.Label(root, text='Tries:' + str(r), fg='white', bg='black', font=('Tahoma', 25))
+    lbl334.grid(row=5, column=0)
+    lbl333 = tk.Label(root, text='Highscore:' + str(g), fg='white', bg='black', font=('Tahoma', 25))
+    lbl333.grid(row=5, column=1)
     root.bind('<Return>', go)
 
 
