@@ -48,7 +48,7 @@ def restart():
     t = 0
     r = 0
     l = 0
-    lbl334.configure(text='Tries:' + str(r))
+    lbl334.configure(text='Tries:' + str(r),fg='white')
     lbl334.update()
     if c == 0:
         lbl3.destroy()
@@ -81,7 +81,12 @@ def go(*args):
                 lbl3.configure(image=logo3)
                 entr.configure(state="disabled")
                 r += 1
-                lbl334.configure(text='Tries:' + str(r))
+                if r <= 3:
+                    lbl334.configure(text='Tries:' + str(r), fg='green')
+                elif r > 3 and r <= 7:
+                    lbl334.configure(text='Tries:' + str(r), fg='orange')
+                else:
+                    lbl334.configure(text='Tries:' + str(r), fg='red')
                 lbl334.update()
                 l = 1
                 g = r
@@ -94,7 +99,12 @@ def go(*args):
             d = int(entr.get())
             if l == 0:
                 r += 1
-                lbl334.configure(text='Tries:' + str(r))
+                if r<=3:
+                    lbl334.configure(text='Tries:' + str(r),fg='green')
+                elif r>3 and r<=7:
+                    lbl334.configure(text='Tries:' + str(r), fg='orange')
+                else:
+                    lbl334.configure(text='Tries:' + str(r), fg='red')
                 lbl334.update()
             progr.set(d)
         else:
@@ -106,7 +116,12 @@ def go(*args):
                 lbl33.configure(image=logo3)
                 entr.configure(state="disabled")
                 r += 1
-                lbl334.configure(text='Tries:' + str(r))
+                if r <= 3:
+                    lbl334.configure(text='Tries:' + str(r), fg='green')
+                elif r > 3 and r <= 7:
+                    lbl334.configure(text='Tries:' + str(r), fg='orange')
+                else:
+                    lbl334.configure(text='Tries:' + str(r), fg='red')
                 lbl334.update()
                 l = 1
                 if r < g:
@@ -120,7 +135,12 @@ def go(*args):
             d = int(entr.get())
             if l == 0:
                 r += 1
-                lbl334.configure(text='Tries:' + str(r))
+                if r <= 3:
+                    lbl334.configure(text='Tries:' + str(r), fg='green')
+                elif r > 3 and r <= 7:
+                    lbl334.configure(text='Tries:' + str(r), fg='orange')
+                else:
+                    lbl334.configure(text='Tries:' + str(r), fg='red')
                 lbl334.update()
             progr.set(d)
         else:
